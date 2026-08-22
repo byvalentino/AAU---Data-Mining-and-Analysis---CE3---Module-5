@@ -1,0 +1,285 @@
+{
+ "module": 5,
+ "concepts": [
+  {
+   "id": "input_shift",
+   "name": "input shift in reference standard deviations (Glass's Δ)",
+   "slide": "Definition — input shift, in reference standard deviations",
+   "formula": "Δ_t = |mean_t − mean_ref| / s_ref, with s_ref the sample standard deviation (ddof = 1) of the reference period",
+   "citation": "Glass (1976)",
+   "lab": 1,
+   "function": "input_shift",
+   "check": "verify/check_01.py"
+  },
+  {
+   "id": "fixed_reference",
+   "name": "the fixed-reference shift series",
+   "slide": "Definition — the fixed reference against the moving baseline",
+   "formula": "fixed: Δ_t = |mean_t − mean_ref| / s_ref, one reference period held still",
+   "citation": "Page (1954)",
+   "lab": 1,
+   "function": "shift_against_fixed",
+   "check": "verify/check_01.py"
+  },
+  {
+   "id": "moving_baseline",
+   "name": "the moving-baseline shift series",
+   "slide": "Definition — the fixed reference against the moving baseline",
+   "formula": "moving: Δ_t = |mean_t − mean_{t−1}| / s_{t−1}, the yardstick redrawn every day",
+   "citation": "Page (1954)",
+   "lab": 1,
+   "function": "shift_against_yesterday",
+   "check": "verify/check_01.py"
+  },
+  {
+   "id": "blind_baseline",
+   "name": "the baseline that goes blind",
+   "slide": "Definition — the fixed reference against the moving baseline",
+   "formula": "blind: Δ_t returns to the quiet floor after a step, though mean_t ≠ mean_ref throughout",
+   "citation": "Page (1954)",
+   "lab": 1,
+   "function": "which_baseline_goes_blind",
+   "check": "verify/check_01.py"
+  },
+  {
+   "id": "breach",
+   "name": "a breach of the threshold, by day number",
+   "slide": "Definition — a breach, and the day it happened on",
+   "formula": "over(Δ, τ) = { t : Δ_t ≥ τ }, reported as day numbers, with day 1 at position 0",
+   "citation": "Gama et al. (2014)",
+   "lab": 1,
+   "function": "days_over",
+   "check": "verify/check_01.py"
+  },
+  {
+   "id": "output_rate",
+   "name": "the model's own output rate",
+   "slide": "Definition — the three levels, and what each costs",
+   "formula": "r_t = (1/n_t) Σ_i ŷ_{t,i}",
+   "citation": "Breck et al. (2017)",
+   "lab": 2,
+   "function": "output_rate",
+   "check": "verify/check_02.py"
+  },
+  {
+   "id": "three_levels",
+   "name": "the three levels of monitoring",
+   "slide": "Definition — the three levels, and what each costs",
+   "formula": "level 1 = Δ_t on the inputs, cost 0 · level 2 = output rate r_t = (1/n_t) Σ_i ŷ_{t,i}, cost 0 · level 3 = accuracy on m bought labels per day, cost m labels",
+   "citation": "Breck et al. (2017)",
+   "lab": 2,
+   "function": "levels_over",
+   "check": "verify/check_02.py"
+  },
+  {
+   "id": "bought_truth",
+   "name": "bought truth: a seeded sample without replacement",
+   "slide": "Definition — bought truth and its Wilson interval",
+   "formula": "S ⊂ D drawn without replacement, |S| = min(m, |D|), successes k = Σ_{i ∈ S} 1[ŷ_i = y_i]",
+   "citation": "Wilson (1927)",
+   "lab": 2,
+   "function": "buy_truth",
+   "check": "verify/check_02.py"
+  },
+  {
+   "id": "wilson_interval",
+   "name": "the Wilson interval on a bought share",
+   "slide": "Definition — bought truth and its Wilson interval",
+   "formula": "(k + z²/2)/(n + z²) ± z/(n + z²) · √( k(n − k)/n + z²/4 ), z = 1.96 at 95 per cent",
+   "citation": "Wilson (1927)",
+   "lab": 2,
+   "function": "sampled_accuracy",
+   "check": "verify/check_02.py"
+  },
+  {
+   "id": "moved_tolerances",
+   "name": "when a level has moved",
+   "slide": "Definition — when a level has moved, and why overlap is not a test",
+   "formula": "moved(level) ⟺ |later − earlier| ≥ tolerance, with tolerances 0.10 reference standard deviations for the inputs, 0.05 for the output rate and 0.05 for bought accuracy",
+   "citation": "Beyer et al. (2016)",
+   "lab": 2,
+   "function": "which_levels_moved",
+   "check": "verify/check_02.py"
+  },
+  {
+   "id": "shift_taxonomy",
+   "name": "covariate shift, concept drift and prior shift",
+   "slide": "Definition — covariate shift, concept drift and prior shift",
+   "formula": "covariate shift: P_ref(X) ≠ P_cur(X) with P(Y | X) unchanged · concept drift: P(Y | X) changes · prior shift: P(Y) changes with P(X | Y) unchanged",
+   "citation": "Moreno-Torres, Raeder, Alaiz-Rodríguez, Chawla & Herrera (2012)",
+   "lab": 2,
+   "function": "which_levels_moved",
+   "check": "verify/check_02.py"
+  },
+  {
+   "id": "segment_accuracy",
+   "name": "truth bought by segment, on a stated budget",
+   "slide": "Definition — buying truth by segment, and what the allocation costs",
+   "formula": "by group g: k_g successes of n_g checked, with Σ_g n_g = budget · uniform: one draw from the period, n_g as the traffic falls · stratified: n_g = budget / |G| for every g, whatever its share of the traffic",
+   "citation": "Neyman (1934)",
+   "lab": 2,
+   "function": "segment_accuracy",
+   "check": "verify/check_02.py"
+  },
+  {
+   "id": "which_segments_moved",
+   "name": "which group the model got worse for",
+   "slide": "Definition — buying truth by segment, and what the allocation costs",
+   "formula": "moved(g) ⟺ |accuracy_later(g) − accuracy_earlier(g)| ≥ tolerance, over the groups present in both periods",
+   "citation": "Simpson (1951)",
+   "lab": 2,
+   "function": "which_segments_moved",
+   "check": "verify/check_02.py"
+  },
+  {
+   "id": "quiet_floor",
+   "name": "the quiet floor",
+   "slide": "Definition — the quiet floor and the lowest safe threshold",
+   "formula": "floor = max_{1 ≤ t ≤ q} Δ_t over the quiet days, day 1 at position 0",
+   "citation": "Beyer et al. (2016)",
+   "lab": 3,
+   "function": "quiet_floor",
+   "check": "verify/check_03.py"
+  },
+  {
+   "id": "lowest_safe_threshold",
+   "name": "the lowest safe threshold",
+   "slide": "Definition — the quiet floor and the lowest safe threshold",
+   "formula": "τ* = min { τ ∈ C : τ > floor }, and None when no candidate clears the floor",
+   "citation": "Beyer et al. (2016)",
+   "lab": 3,
+   "function": "lowest_safe_threshold",
+   "check": "verify/check_03.py"
+  },
+  {
+   "id": "confirmation_cooldown",
+   "name": "confirmation and the cooldown",
+   "slide": "Definition — confirmation, the cooldown, and what they cost",
+   "formula": "run_t = run_{t−1} + 1 if Δ_t ≥ τ else 0; page at t ⟺ run_t ≥ k and t ≥ p + c, p the last paging day",
+   "citation": "Page (1954)",
+   "lab": 3,
+   "function": "pages_with_confirmation",
+   "check": "verify/check_03.py"
+  },
+  {
+   "id": "detection_delay",
+   "name": "detection delay",
+   "slide": "Definition — confirmation, the cooldown, and what they cost",
+   "formula": "delay = first paging day − first breach, and −1 when the series never crosses",
+   "citation": "Page (1954)",
+   "lab": 3,
+   "function": "detection_delay",
+   "check": "verify/check_03.py"
+  },
+  {
+   "id": "shift_by_column",
+   "name": "one shift series per watched column",
+   "slide": "Definition — watching many columns: the family floor and the expected false alarms",
+   "formula": "Δ_{c,t} = |mean_{c,t} − mean_{c,ref}| / s_{c,ref} for each watched column c, missing readings dropped",
+   "citation": "Rabanser, Günnemann & Lipton (2019)",
+   "lab": 3,
+   "function": "shift_by_column",
+   "check": "verify/check_03.py"
+  },
+  {
+   "id": "family_quiet_floor",
+   "name": "the family quiet floor",
+   "slide": "Definition — watching many columns: the family floor and the expected false alarms",
+   "formula": "floor_family = max_c max_{1 ≤ t ≤ q} Δ_{c,t}, the largest quiet-day movement any watched column makes",
+   "citation": "Rabanser, Günnemann & Lipton (2019)",
+   "lab": 3,
+   "function": "family_quiet_floor",
+   "check": "verify/check_03.py"
+  },
+  {
+   "id": "expected_false_alarms",
+   "name": "the alarms expected from nothing at all",
+   "slide": "Definition — watching many columns: the family floor and the expected false alarms",
+   "formula": "E[alarms] = m · α · d for m columns at a per-column level α over d days",
+   "citation": "Rabanser, Günnemann & Lipton (2019)",
+   "lab": 3,
+   "function": "expected_false_alarms",
+   "check": "verify/check_03.py"
+  },
+  {
+   "id": "alert_verdict",
+   "name": "the alert verdict: page, ticket or nothing",
+   "slide": "Definition — the alert verdict: page, ticket or nothing",
+   "formula": "verdict(evidence) = nothing if observed ≤ quiet_floor · page if level = outcome and truth has arrived · ticket otherwise, with a reason naming ≥ 2 of the quantities weighed",
+   "citation": "Beyer et al. (2016)",
+   "lab": 3,
+   "function": "alert_verdict",
+   "check": "verify/check_03.py"
+  },
+  {
+   "id": "a_run",
+   "name": "a run",
+   "slide": "Definition — a run, and the retrain that logs it",
+   "formula": "run = (parameters, data window, metrics, artefact, environment) recorded once and never edited; one retrain, one run",
+   "citation": "Zaharia et al. (2018)",
+   "lab": 4,
+   "function": "retrain",
+   "check": "verify/check_04.py"
+  },
+  {
+   "id": "gate_margin",
+   "name": "the gate and its margin",
+   "slide": "Definition — the gate, and the margin it opens on",
+   "formula": "promote ⟺ accuracy(candidate) ≥ accuracy(champion) + margin, both measured on gate days neither model was trained on, each model on its own feature list",
+   "citation": "Kreuzberger, Kühl & Hirschl (2023)",
+   "lab": 4,
+   "function": "passes_gate",
+   "check": "verify/check_04.py"
+  },
+  {
+   "id": "release_verdict",
+   "name": "the release verdict: promote, hold or roll back",
+   "slide": "Definition — the release verdict: promote, hold or roll back",
+   "formula": "verdict = roll back if the released model is worse than the one it replaced · hold if the candidate's number came from days it was trained on · promote if candidate − champion ≥ max(margin, Wilson half-width) · hold otherwise",
+   "citation": "Kreuzberger, Kühl & Hirschl (2023)",
+   "lab": 4,
+   "function": "release_verdict",
+   "check": "verify/check_04.py"
+  },
+  {
+   "id": "release_by_alias",
+   "name": "release by alias",
+   "slide": "Definition — release by alias, and rollback",
+   "formula": "release(v): alias champion ↦ v, the artefact never overwritten",
+   "citation": "Zaharia et al. (2018)",
+   "lab": 4,
+   "function": "promote",
+   "check": "verify/check_04.py"
+  },
+  {
+   "id": "rollback",
+   "name": "rollback as the same move reversed",
+   "slide": "Definition — release by alias, and rollback",
+   "formula": "rollback: alias champion ↦ v_previous, the same move reversed, with the history append-only",
+   "citation": "Zaharia et al. (2018)",
+   "lab": 4,
+   "function": "rollback",
+   "check": "verify/check_04.py"
+  },
+  {
+   "id": "model_signature",
+   "name": "the model signature",
+   "slide": "Definition — the model signature",
+   "formula": "signature = (column names, types, order) inferred at logging and enforced at predict: a reorder is corrected, a rename or an absence is refused",
+   "citation": "Zaharia et al. (2018)",
+   "lab": 4,
+   "function": "ask_champion",
+   "check": "verify/check_04.py"
+  },
+  {
+   "id": "feedback_loop",
+   "name": "the feedback loop",
+   "slide": "Definition — the feedback loop",
+   "formula": "the model's own decisions enter the data it is next trained on: D_{t+1} = f(D_t, model_t), so what \"normal\" means is partly the previous model's doing",
+   "citation": "Perdomo, Zrnic, Mendler-Dünner & Hardt (2020)",
+   "lab": 4,
+   "function": "close_the_loop",
+   "check": "verify/check_04.py"
+  }
+ ]
+}

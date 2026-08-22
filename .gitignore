@@ -1,0 +1,18 @@
+__pycache__/
+*.pyc
+landing/
+DATA_PROFILE.md
+.ipynb_checkpoints/
+
+# Trained by setup.sh, not committed: the candidate is ~95 MB, and an artefact
+# you can rebuild in seconds does not belong in a repository students clone.
+service/artefacts/
+data/*.parquet
+data/MANIFEST.json
+out/
+mlruns.db
+mlartifacts/
+mlruns/
+labs/.your_attempt/
+labs/.attempts.json
+timing.json
