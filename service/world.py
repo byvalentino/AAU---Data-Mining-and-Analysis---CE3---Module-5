@@ -86,10 +86,14 @@ def day(number: int, seed: int = SEED) -> pd.DataFrame:
     #
     # Note what happens as that choice grows: the reference period contains crew
     # rows too, so a larger effect inflates the reference's own spread as well as
-    # the shifted day's mean. The standardised shift therefore saturates around
-    # 0.6 reference standard deviations however hard it is pushed -- which is a
-    # real property of standardising against a contaminated reference, and worth
-    # knowing before quoting a shift in standard deviations.
+    # the shifted day's mean, and that inflation is what bounds the standardised
+    # shift -- not near the shipped multiplier's 0.6, but well above 0.9 once the
+    # effect is pushed to several times its shipped size (measured: 0.60 at this
+    # multiplier, 0.77 at 1.5x, 0.85 at 2x, 0.94 at 4x, still climbing). Whatever
+    # the true ceiling is, standardising against a contaminated reference bounds
+    # it below what an uncontaminated reference would show, which is the property
+    # worth knowing before quoting a shift in standard deviations -- the number
+    # itself is not 0.6 and depends on how far the effect is pushed.
     base = np.where(is_aboard, rng.normal(2.2, 0.7, ROWS_PER_DAY),
                     rng.normal(0.7, 0.4, ROWS_PER_DAY))
     speed = np.where(with_crew, base * 2.0 + 0.8, base).clip(0, None).round(3)

@@ -285,9 +285,13 @@ def expected_false_alarms(columns: int, level: float, days: int = 1) -> float:
         E[alarms] = m · α · d for m columns at a per-column level α over d days
         (Rabanser, Günnemann & Lipton, 2019). Choices: expected count rather than
         the probability of at least one, because a person on call counts
-        messages; the columns are treated as independent, which flatters the
-        count when they move together. Slide: "Definition — watching many
-        columns: the family floor and the expected false alarms".
+        messages. By linearity of expectation the count is exact whether or not
+        the columns move together -- dependence does not change how many
+        alarms fire on average, only how they cluster: correlated columns bunch
+        the same expected count into fewer, larger incidents rather than
+        spreading it evenly, which changes what a page costs, not how many
+        there are. Slide: "Definition — watching many columns: the family
+        floor and the expected false alarms".
     Needs: nothing — one multiplication
     """
     # TODO: one multiplication, and then look at what it says about forty columns.
