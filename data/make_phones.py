@@ -13,17 +13,12 @@ The magnitudes ship; the rows never do. A generator with invented parameters
 would be a fabricated experimental result, so nothing below is invented — where
 a number appears it came from the archive, and `calibration.json` says so.
 
-What is faithfully reproduced, because the labs turn on it:
-
-  * two sampling rates -- phones about once a second, vehicles twice a second,
-    which is the alignment problem in Lab 1
-  * beacons absent at the measured rates, and absent *for a reason*: out of
-    range, not lost in transit. That is a mechanism, not noise (Lab 2)
-  * the same absence encoded twice -- an empty signal strength and a proximity
-    of -1 mark exactly the same rows, as they do in the archive
-  * a `bus_id` present exactly when the passenger is aboard, which is the leak
-    Lab 3 hunts. In the archive this is real: 7,723 rows aboard all carry it,
-    6,000 rows not aboard all lack it, with no exceptions
+This is shared course scaffolding: the same generator Module 2 uses for its
+own labs (alignment, absence, the `bus_id` leak). Module 5's labs do not
+exercise those mechanisms directly -- what this module takes from it is the
+calibration discipline itself. `data/prepare.py` runs this generator
+alongside `service/world.py`'s own generated stream; each writes its own
+files, and neither reads the other's.
 """
 from __future__ import annotations
 
