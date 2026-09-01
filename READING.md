@@ -166,6 +166,16 @@ The problem MLflow is an answer to, stated without a product attached: what an
 organisation actually has to keep about a model, and why the keeping is the hard
 part.
 
+**MLflow documentation — the model registry, and the scikit-learn flavour.**
+<https://mlflow.org/docs/latest/ml/model-registry/workflow/> and
+<https://mlflow.org/docs/latest/api_reference/python_api/mlflow.sklearn.html> —
+the tool the store in this module is written with. It pins **MLflow 3.15.1**.
+This module logs a plain scikit-learn model, so MLflow 3's switch of default
+serialisation format to `skops` does not reach it; Module 3, whose pipeline
+carries a class written for this course, has to name `cloudpickle` explicitly.
+Read `log_model` there if you add a step of your own here, because that is the
+moment the default starts to matter.
+
 **Kreuzberger, D., Kühl, N. & Hirschl, S. (2023). *MLOps: Overview, Definition,
 and Architecture*. IEEE Access 11, 31866–31879.**
 <https://doi.org/10.1109/ACCESS.2023.3262138> — free. The retrain, gate, promote
