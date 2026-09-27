@@ -25,3 +25,10 @@ pytest==8.3.4
 plotly==5.24.1
 kaleido==0.2.1
 mlflow==3.15.1
+# MLflow saves the scikit-learn model through skops, which it does not pin.
+# skops 0.15.0 (16 Sep 2026) and 0.16.0 (24 Sep 2026) refuse to load a
+# decision tree's node storage (sklearn.tree._tree.Tree) as an untrusted type,
+# so a fresh install could no longer train the service model and setup.sh
+# failed. 0.14.0 is the last release that keeps the behaviour this module was
+# verified on: bash setup.sh exits 0, labs 2 2 2 2, then 0 0 0 0 after apply.py.
+skops==0.14.0
