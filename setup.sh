@@ -21,11 +21,16 @@ if ! python3 -m pip install --quiet --upgrade pip; then
   echo "      belongs to the system, this is expected, and setup continues."
 fi
 
-if ! python3 -m pip install --quiet -r requirements.txt; then
+# constraints.txt pins every package the requirements pull in, not only the ones
+# named in requirements.txt. Resolved on 28 September 2026 for Python 3.11 and
+# later, on Linux, macOS and Windows. Without it a fresh install takes whatever
+# was released last night: skops 0.15 and 0.16 (16 and 24 September 2026), which
+# nothing here named, stopped Module 5's setup from training its model.
+if ! python3 -m pip install --quiet -r requirements.txt -c constraints.txt; then
   echo "note: retrying with --break-system-packages, which a Debian-packaged"
   echo "      Python asks for. If the install failed for any other reason, it"
   echo "      is printed above and the retry will fail too."
-  python3 -m pip install --quiet --break-system-packages -r requirements.txt
+  python3 -m pip install --quiet --break-system-packages -r requirements.txt -c constraints.txt
 fi
 
 
