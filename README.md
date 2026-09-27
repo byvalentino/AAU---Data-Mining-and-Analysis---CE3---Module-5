@@ -1,4 +1,4 @@
-# Module 5 — Monitoring a model in service
+# Module 5 — Monitoring and retraining a model in service
 
 Data Mining and Analysis (course code CE3), Aalborg University, Copenhagen.
 Edition 2026. Instructor: Valentino Servizi.

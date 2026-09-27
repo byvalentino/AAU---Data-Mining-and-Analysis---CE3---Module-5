@@ -5,8 +5,9 @@ labels, so nobody can compute its accuracy — but the inputs arrive free, every
 day, and they can be compared against the days the model was trained on. You
 prove here that the comparison only means something when the yardstick is held
 still, by building the same monitor twice and watching one of the two go blind.
-Where it sits: Block one — "The only free question" and "Which spread? The
-question that decides whether the monitor fires", and the definition slides
+Where it sits: Block one — "Without labels, only the inputs can be compared
+with the reference period" and "The spread must come from the reference period,
+not from the day itself", and the definition slides
 "Definition — input shift, in reference standard deviations", "Definition — the
 fixed reference against the moving baseline" and "Definition — a breach, and the
 day it happened on".
@@ -29,7 +30,7 @@ You cannot answer that with the model's accuracy, because you have no labels.
 What you do have, free, is the inputs. So compare today's inputs against the
 ones the model was trained on and say how far they have moved.
 
-"How far" needs a unit, and the unit is the argument. A difference of 0.75
+"How far" needs a unit, and the unit is the argument. A difference of 0.76
 metres per second means nothing on its own — it is large if the training days
 never varied by more than 0.1, and invisible if they swung by 5. So divide by
 the spread of the *reference* period:

@@ -75,8 +75,8 @@ Spend the same 1,400 labels, split evenly:
 | covariate, 14–20 | 0.914 | 0.639 | 0.404 |
 | concept, 21–27 | 0.909 | 0.389 | 0.415 |
 
-Two things fall out of that table and neither is on a slide before it is
-measured.
+Two things fall out of that table, and the slide
+"The pooled accuracy hid a group the model served worse from the first day" states both.
 
 The model has served one group far worse **since the day it was switched on**.
 The two intervals in the stable week are nowhere near each other, and nothing in
@@ -181,8 +181,8 @@ is a real monitor, and a different one, and Module 2 built it.
 
 ### The alert verdict: page, ticket or nothing
 
-The slide "What an alert should say" was the best ninety seconds in the module
-and was graded nowhere. `alert_verdict` is that slide as a function, and its
+The slide "A readable page states the change, its evidence and who acts next"
+was the best ninety seconds in the module and was graded nowhere. `alert_verdict` is that slide as a function, and its
 three questions are asked in an order that is itself the content:
 
 1. is the movement inside the quiet floor? Then `nothing`. At or under the floor

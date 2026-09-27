@@ -224,7 +224,7 @@ will actually be handed. Read it for the aggregation problem: one test per
 dimension and a union over them needs the level corrected, or the detector fires
 on data that has not moved. Block three measures the same thing without any
 testing machinery at all — the quiet floor of a family of columns is the worst
-quiet day of the worst column, and here it is nearly three times one column's.
+quiet day of the worst column, and here it is 2.6 times one column's.
 
 **European Union (2024). *Regulation (EU) 2024/1689, the Artificial Intelligence
 Act*, Article 72 and Annex IV.**

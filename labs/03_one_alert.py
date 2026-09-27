@@ -6,11 +6,12 @@ right to mute it. You prove here that a threshold can be justified against a
 measured noise floor rather than chosen by taste, and that confirmation and a
 cooldown turn fourteen true pages into three at a cost of exactly one day, which
 you measure rather than assume.
-Where it sits: Block three — "Decision one — where the line goes, and where the
-number comes from", "The same signal, and the number of times somebody is
-woken", "Forty columns, and two alarms a day from nothing" and "What an alert
-should say", and the definition slides "Definition — the quiet floor and the
-lowest safe threshold", "Definition — confirmation, the cooldown, and what they
+Where it sits: Block three — "The quiet floor is the largest input shift seen
+while nothing changed", "Step by step: the lowest safe threshold",
+"Confirmation and a cooldown turn 14 pages into 3", "A threshold set on one
+column is too low for the other three" and "A readable page states the change,
+its evidence and who acts next", and the definition slides "Definition — the
+quiet floor and the lowest safe threshold", "Definition — confirmation, the cooldown, and what they
 cost", "Definition — watching many columns: the family floor and the expected
 false alarms" and "Definition — the alert verdict: page, ticket or nothing".
 What the check grades: quiet_floor is the maximum over days 1 to last_quiet_day
@@ -204,8 +205,10 @@ def lowest_safe_threshold(series, last_quiet_day: int = LAST_QUIET_DAY,
     small constant put under an empty bin's share to keep the logarithm finite,
     rather than the data. The shift this module watches is a difference of means
     divided by a spread, so it bins nothing at all; where this module does bin —
-    the five bands behind the blind case on the appendix slide — it stays at or
-    below ten bins and prints the count beside the number.
+    the divergence index for the blind case, a stable day with every label
+    swapped, is taken over five quantile bands of the reference period's speed
+    in slides/make_figs.py — it stays at or below ten bins and records the count
+    beside the number in measured.json.
     """
     # TODO: the first candidate above the quiet floor.
     raise NotSolved("lowest_safe_threshold(series, last_quiet_day, candidates) still "
@@ -301,7 +304,8 @@ def expected_false_alarms(columns: int, level: float, days: int = 1) -> float:
 def alert_verdict(evidence: dict) -> tuple:
     """Return (call, reason). `call` is one of "page", "ticket", "nothing".
 
-    This is the slide "What an alert should say", written down as a function so
+    This is the slide "A readable page states the change, its evidence and who
+    acts next", written down as a function so
     that it can be argued with. `evidence` is what you measured, and it holds
     exactly these five keys:
 
@@ -313,7 +317,9 @@ def alert_verdict(evidence: dict) -> tuple:
         truth_has_arrived     True when bought labels for this period are in
                               hand, False when nobody has checked a row yet
         level                 "input", "output" or "outcome" — which of block
-                              two's three levels the movement was seen at
+                              two's three levels the movement was seen at;
+                              "outcome" is the level the slides call bought
+                              truth
 
     Three questions, in this order, and the order is the content:
 

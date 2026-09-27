@@ -6,10 +6,12 @@ measure all three on the same days and read the table across. You prove here
 that a week in which the inputs sit still and the model keeps saying the same
 thing can still be a week in which the model is ten points less right, and that
 saying so honestly needs an interval rather than a decimal point.
-Where it sits: Block two — "Three things you can watch", "The table this
-module exists for" and "The average hid a group, and the group is who was
-driving", and the definition slides "Definition — covariate shift, concept drift
-and prior shift", "Definition — the three levels, and what each costs",
+Where it sits: Block two — "Three things can be watched, and they cost different
+amounts", "Over a week, bought truth separates two changes the free levels
+cannot" and "The pooled accuracy hid a group the model served worse from the
+first day", the definition slide from block one "Definition — covariate shift,
+concept drift and prior shift", and the block two definition slides
+"Definition — the three levels, and what each costs",
 "Definition — bought truth and its Wilson interval", "Definition — when a level
 has moved, and why overlap is not a test" and "Definition — buying truth by
 segment, and what the allocation costs".
@@ -112,7 +114,8 @@ TRUTH_BUDGET = SAMPLE_SIZE * 7
 #   uniform      draw from the whole period and let each group's share of the
 #                sample fall where the traffic puts it
 #   stratified   divide the budget equally between the groups and draw that many
-#                from each, whatever their share of the traffic
+#                from each, whatever their share of the traffic — the "even
+#                split" on the slide
 ALLOCATIONS = ("uniform", "stratified")
 
 
@@ -229,7 +232,8 @@ def segment_accuracy(model, frame, segment: str = SEGMENT,
                        share of the traffic.
         "stratified"   divide the budget equally between the groups — budget //
                        number of groups each — and draw that many from each
-                       group's own rows with buy_truth.
+                       group's own rows with buy_truth. This is the "even
+                       split" on the slide.
 
     Return a dict keyed by the distinct values of the segment column, in sorted
     order, each entry a dict with:

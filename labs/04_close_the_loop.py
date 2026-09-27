@@ -7,8 +7,8 @@ refused on a measurement rather than on an opinion, that releasing is moving a
 pointer and therefore reversible in one call, and that the registry can answer
 "which model answered on day 23?" months later because every retrain was written
 down as a run.
-Where it sits: Block four — "The monitor spoke. Now what?" and "The rule that
-makes the gate mean anything", and the definition slides "Definition — a run,
+Where it sits: Block four — "The response to a detected change starts with the
+cheapest step", and the definition slides "Definition — a run,
 and the retrain that logs it", "Definition — the gate, and the margin it opens
 on", "Definition — the release verdict: promote, hold or roll back",
 "Definition — release by alias, and rollback", "Definition — the model
@@ -29,8 +29,9 @@ days, the model and the two registries.
 
 Twenty-five minutes.
 
-The monitor has done its job. It said, on day 21, that the model was getting
-things wrong while the inputs sat still. Now somebody has to fix it, and a fix
+The monitor has done its job. It paged on days 15, 20 and 25, and from day 21
+bought truth showed the model getting more things wrong while the inputs moved
+no further. Now somebody has to fix it, and a fix
 that cannot be undone is not a fix, it is a gamble.
 
 Module 3 built the machinery already: a registry that says which version is
