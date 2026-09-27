@@ -18,13 +18,12 @@ buy_truth draws the rows the check draws, without replacement, and never asks
 for more rows than the frame holds; a sample of 800 gives a narrower interval
 than one of 50; levels_over returns inputs, output, truth, low, high and labels,
 buying 200 rows per day so a seven-day week costs 1,400 labels;
-which_levels_moved names all three levels between the stable and the covariate
-week and only "truth" between the covariate and the concept week;
-segment_accuracy spends the same 1,400 labels two ways and gives the smaller
-group 700 rows under stratification against about 125 under uniform sampling;
-and which_segments_moved returns nothing at all between the stable and the
-covariate week and only the crew group between the covariate and the concept
-week.
+which_levels_moved names the levels that moved between each pair of weeks, and
+the two pairs do not give the same answer; segment_accuracy spends the same
+1,400 labels two ways and gives the smaller group more rows under stratification
+than under uniform sampling; and which_segments_moved names the segments that
+moved between each pair of weeks, where one pair moves a segment that the
+pooled number does not show.
 Needs: numpy, pandas, and lab_support for the model, the days and Wilson.
 
 Twenty-five minutes.

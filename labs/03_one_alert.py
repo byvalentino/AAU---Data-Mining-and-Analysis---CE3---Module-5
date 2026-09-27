@@ -14,15 +14,14 @@ lowest safe threshold", "Definition — confirmation, the cooldown, and what the
 cost", "Definition — watching many columns: the family floor and the expected
 false alarms" and "Definition — the alert verdict: page, ticket or nothing".
 What the check grades: quiet_floor is the maximum over days 1 to last_quiet_day
-inclusive; pages_with_confirmation turns the fourteen raw breaches on the real
-series into pages on days 15, 20 and 25 and resets its run on any day under the
-line; detection_delay reports the days lost to confirmation — including on a
+inclusive; pages_with_confirmation turns the raw breaches on the real series
+into a smaller number of pages and resets its run on any day under the line; detection_delay reports the days lost to confirmation — including on a
 series whose run breaks, where the answer is not simply confirmations minus one
-— and -1 for a series that never crosses; lowest_safe_threshold returns 0.10
-on the real series and None when every candidate fires on a quiet day;
-shift_by_column reproduces Lab 1's series for speed and gives one series per
-watched column, family_quiet_floor over those four is 0.1507 against speed's
-0.0573 and expected_false_alarms is one multiplication; and alert_verdict
+— and -1 for a series that never crosses; lowest_safe_threshold returns the
+smallest candidate that never fires on a quiet day, and None when every
+candidate does; shift_by_column reproduces Lab 1's series for speed and gives
+one series per watched column, family_quiet_floor over those four stands above
+the floor for speed alone and expected_false_alarms is one multiplication; and alert_verdict
 returns the call the evidence justifies on six situations whose right calls
 differ, with a reason built out of the numbers it was handed.
 Needs: lab_support for Lab 1's series and the shipped alerting settings.

@@ -20,8 +20,8 @@ refused on a renamed or missing column; passes_gate refuses a tie, refuses a
 worse candidate, refuses everything at a margin of 0.95 and scores each model on
 its own feature list; promote writes the artefact, moves the pickle registry and
 moves the champion alias to the same version, and rollback moves both back;
-close_the_loop ends at "v3" with a history of ['v1', 'v2', 'v3'] at the shipped
-margin of 0.01, and at "v2" at a margin of 0.05; and release_verdict makes the
+close_the_loop is run at the shipped margin of 0.01 and again at 0.05, and the
+two runs do not end on the same version; and release_verdict makes the
 right call on eight situations whose answers differ and four one-quantity
 changes, with a reason built out of the numbers it was handed.
 Needs: pandas, mlflow.exceptions, and lab_support and service.models for the

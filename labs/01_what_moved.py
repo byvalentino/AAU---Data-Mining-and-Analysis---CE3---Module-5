@@ -13,8 +13,10 @@ day it happened on".
 What the check grades: input_shift divides by the reference's sample standard
 deviation (ddof = 1) and takes the absolute value; both series are twenty-seven
 days long and agree with the check's own arithmetic on days 1, 13, 14, 20 and 27;
-days_over reports all fourteen days from 14 to 27 on the fixed series and exactly
-[14] on the moving one; and which_baseline_goes_blind() returns "moving".
+days_over reports the days the series stands above the line, and the two
+baselines do not report the same number of them; and
+which_baseline_goes_blind() names the baseline that stops reporting, which that
+disagreement decides.
 Needs: numpy, and lab_support for the stream and the grain.
 
 Twenty-five minutes.
